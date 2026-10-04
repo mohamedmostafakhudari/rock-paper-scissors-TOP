@@ -64,3 +64,29 @@ function updateScores(winner) {
     humanScore += 1;
   }
 }
+
+/**
+ * Sub-Problem: How to determine the round winner?
+ * Input: Computer Choice and Human Choice
+ * Desired Output: "computer" or "player" or "tie"
+ * Steps:
+ * IF Computer Choice == Human Choice
+ *  Return 'tie'
+ * ELSE IF Computer Choice == 'rock' and Human Choice == 'scissors'
+ *  or Computer Choice == 'paper' and Human Choice == 'rock'
+ *  or Computer Choice == 'scissors' and Human Choice == 'paper'
+ *  Return 'computer'
+ * ELSE
+ *  Return 'human'
+ */
+function computeRoundResult(computerChoice, playerChoice) {
+  if (computerChoice === playerChoice) {
+    return 'tie';
+  } else if (computerChoice === 'rock' && playerChoice === 'scissors' 
+      || computerChoice === 'paper' && playerChoice === 'rock'
+      || computerChoice === 'scissors' && playerChoice === 'paper') {
+    return 'computer';
+  } else {
+    return 'human';
+  }
+}
