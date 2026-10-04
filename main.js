@@ -41,3 +41,26 @@ function getHumanChoice() {
   
   return CHOICES[userInput];
 }
+
+/**
+ * Sub-Problem: How to keep track of players scores?
+ * Input: winner
+ * Desired Output: Updated state of the score board
+ * Steps:
+ * INIT variable computerScore and SET its value to 0
+ * INIT variable humanScore and SET its value to 0
+ * IF winner == human
+ *  Increment humanScore by 1
+ * ELSE IF winner == computer
+ *  Increment computerScore by 1
+ */
+const computerScore = 0;
+const humanScore = 0;
+
+function updateScores(winner) {
+  if (winner === "computer") {
+    computerScore += 1;
+  } else if (winner === "human") {
+    humanScore += 1;
+  }
+}
