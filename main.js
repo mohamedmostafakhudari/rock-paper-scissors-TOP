@@ -1,3 +1,4 @@
+const MAX_ROUNDS = 5;
 const CHOICES = ['rock', 'paper', 'scissors'];
 
 function capitalize(word) {
@@ -58,10 +59,8 @@ function getHumanChoice() {
  * ELSE IF winner == computer
  *  Increment computerScore by 1
  */
-let computerScore = 0;
-let humanScore = 0;
-
 function updateScores(roundResult) {
+  // not used currently
   if (roundResult === "computer") {
     computerScore += 1;
   } else if (roundResult === "human") {
@@ -107,10 +106,30 @@ function displayRoundResult(roundResult, computerChoice, humanChoice) {
 
 function playRound(computerChoice, humanChoice) {
   const roundResult = computeRoundResult(computerChoice, humanChoice);
-  displayRoundResult(roundResult, computerChoice, humanChoice);
-  updateScores(roundResult);
+  return roundResult;
 }
 
-const computerChoice = getComputerChoice();
-const humanChoice = getHumanChoice();
-playRound(computerChoice, humanChoice);
+
+function playGame() {
+let currentRound = 1;
+let computerScore = 0;
+let humanScore = 0;
+
+while (currentRound <= MAX_ROUNDS) {
+  const computerChoice = getComputerChoice();
+  const humanChoice = getHumanChoice();
+  const roundResult= playRound(computerChoice, humanChoice);
+  
+  displayRoundResult(roundResult, computerChoice, humanChoice);
+  
+  if (roundResult === "computer") {
+    computerScore += 1;
+  } else if (roundResult === "human") {
+    humanScore += 1;
+  }
+
+  currentRound += 1;
+  }
+}
+
+// playGame();
