@@ -1,5 +1,9 @@
 const CHOICES = ['rock', 'paper', 'scissors'];
 
+function capitalize(word) {
+  return word.at(0).toUpperCase() + word.slice(1).toLowerCase();
+}
+
 function random(max) {
   return Math.floor(Math.random() * max);
 }
@@ -54,13 +58,13 @@ function getHumanChoice() {
  * ELSE IF winner == computer
  *  Increment computerScore by 1
  */
-const computerScore = 0;
-const humanScore = 0;
+let computerScore = 0;
+let humanScore = 0;
 
-function updateScores(winner) {
-  if (winner === "computer") {
+function updateScores(roundResult) {
+  if (roundResult === "computer") {
     computerScore += 1;
-  } else if (winner === "human") {
+  } else if (roundResult === "human") {
     humanScore += 1;
   }
 }
@@ -90,3 +94,23 @@ function computeRoundResult(computerChoice, playerChoice) {
     return 'human';
   }
 }
+
+function displayRoundResult(roundResult, computerChoice, humanChoice) {
+  if (roundResult === "computer") {
+    console.log(`You lose! ${capitalize(computerChoice)} beats ${capitalize(humanChoice)}`);
+  } else if (roundResult === "human") {
+    console.log(`You win! ${capitalize(humanChoice)} beats ${capitalize(computerChoice)}`);
+  } else {
+    console.log(`It's a tie!`);
+  }
+}
+
+function playRound(computerChoice, humanChoice) {
+  const roundResult = computeRoundResult(computerChoice, humanChoice);
+  displayRoundResult(roundResult, computerChoice, humanChoice);
+  updateScores(roundResult);
+}
+
+const computerChoice = getComputerChoice();
+const humanChoice = getHumanChoice();
+playRound(computerChoice, humanChoice);
