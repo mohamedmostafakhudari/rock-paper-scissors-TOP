@@ -1,8 +1,18 @@
-function updateScores(roundResult) {
-  // not used currently
-  if (roundResult === "computer") {
-    computerScore += 1;
-  } else if (roundResult === "human") {
-    humanScore += 1;
-  }
+let computerScore = 0;
+let humanScore = 0;
+
+export function setHumanScore(newScore) {
+  humanScore = newScore;
+}
+
+export function setComputerScore(newScore) {
+  computerScore = newScore;
+}
+
+export function getHumanScore() {
+  return humanScore;
+}
+
+export function getComputerScore() {
+  return computerScore;
 }

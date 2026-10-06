@@ -1,4 +1,5 @@
 import { capitalize, random } from "./utils.js";
+import * as scoreBoard from "./scoreboard.js";
 
 function getComputerChoice() {
   return CHOICES[random(CHOICES.length)];  
@@ -16,9 +17,15 @@ function computeRoundResult(computerChoice, playerChoice) {
   }
 }
 
-function playRound(computerChoice, humanChoice) {
+export function playRound(humanChoice) {
+  console.log(scoreBoard.getComputerScore(), scoreBoard.getHumanScore());
+  const computerChoice = getComputerChoice();
   const roundResult = computeRoundResult(computerChoice, humanChoice);
-  return roundResult;
+  if (roundResult === "computer") {
+    scoreBoard.setComputerScore(scoreBoard.getComputerScore() + 1);
+  } else if (roundResult === "human") {
+    scoreBoard.setHumanScore(scoreBoard.getHumanScore() + 1);
+  }
 }
 
 
@@ -29,19 +36,3 @@ export function playGame() {
 const CHOICES = ['rock', 'paper', 'scissors'];
 
 let currentRound = 1;
-let computerScore = 0;
-let humanScore = 0;
-
-// const computerChoice = getComputerChoice();
-// const humanChoice = getHumanChoice();
-// const roundResult= playRound(computerChoice, humanChoice);
-
-// displayRoundResult(roundResult, computerChoice, humanChoice);
-
-if (roundResult === "computer") {
-  computerScore += 1;
-} else if (roundResult === "human") {
-  humanScore += 1;
-}
-
-currentRound += 1;
