@@ -6,9 +6,18 @@ const playButtons = document.querySelector('.play-buttons').children;
 Array.from(playButtons).forEach(button => {
   button.addEventListener("click", (e) => {
     const humanChoice = e.target.dataset.value;
-    const roundResult = game.playRound(humanChoice);
+    game.playRound(humanChoice);
     
     const currentState = game.getGameState();
-    ui.updateUI(currentState, roundResult);
+    ui.updateUI(currentState);
   })
 });
+
+const resetButton = document.querySelector(".reset-button");
+
+resetButton.addEventListener("click", () => {
+  game.resetGame();
+  
+  const currentState = game.getGameState();
+  ui.updateUI(currentState);
+})

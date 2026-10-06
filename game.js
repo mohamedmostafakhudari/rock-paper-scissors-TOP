@@ -8,11 +8,24 @@ import { random } from "./utils.js";
 const CHOICES = ['rock', 'paper', 'scissors'];
 const WIN_SCORE = 5;
 
-const gameState = {
+let gameState = {
   humanScore: 0,
   computerScore: 0,
   currentRound: 0,
   isGameOver: false,
+  gameWinner: null,
+  lastRound: null,
+}
+
+function getInitialState() {
+  return {
+    humanScore: 0,
+    computerScore: 0,
+    currentRound: 0,
+    isGameOver: false,
+    gameWinner: null,
+    lastRound: null,
+  }
 }
 
 function getComputerChoice() {
@@ -32,7 +45,8 @@ function computeWinner(computerChoice, playerChoice) {
 }
 
 export function playRound(humanChoice) {
-  if (gameState.isGameOver) return { roundWinner, computerChoice, humanChoice };
+  if (gameState.isGameOver) return;
+  
   const computerChoice = getComputerChoice();
   const roundWinner = computeWinner(computerChoice, humanChoice);
   if (roundWinner === "computer") {
@@ -44,11 +58,12 @@ export function playRound(humanChoice) {
 
   if (gameState.computerScore === WIN_SCORE || gameState.humanScore === WIN_SCORE) {
     gameState.isGameOver = true;
+    gameState.gameWinner = gameState.computerScore === WIN_SCORE ? 'computer' : 'human';
   }
 
   gameState.currentRound += 1;
 
-  return { roundWinner, computerChoice, humanChoice }
+  gameState.lastRound = { roundWinner, computerChoice, humanChoice };
 }
 
 export function getGameState() {
@@ -57,6 +72,7 @@ export function getGameState() {
 
   return {...gameState};
 }
-export function playGame() {
-  
+
+export function resetGame() {
+  gameState = getInitialState();
 }

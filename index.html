@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
-  <script type="module" src="utils.js"></script>
-  <script type="module" src="display.js"></script>
-  <script type="module" src="scoreboard.js"></script>  
-  <script type="module" src="game.js"></script>
+  <link rel="stylesheet" href="style.css">
   <script type="module" src="main.js"></script>
 </head>
 <body>
@@ -22,17 +19,20 @@
           <p>Name: <span class="player-name">Computer</span></p>
           <p>Score: <span class="player-score">0</span></p>
         </div>
-        <p>Current Round: <span class="game-round">1</span></p>
+        <p>Current Round: <span class="game-round">0</span></p>
       </div>
       <div id="round-results" class="round-results">
-        <p id="player1-choice"><span class="player-name">Human</span>'s Choice: <span class="player-choice">Rock</span></p>
-        <p id="player2-choice"><span class="player-name">Computer</span>'s Choice: <span class="player-choice">Paper</span></p>
-        <p>Result: <span class="round-results-text">Paper beats Rock. Computer wins!</span></p>
+        <p id="player1-choice"><span class="player-name">Human</span>'s Choice: <span class="player-choice"></span></p>
+        <p id="player2-choice"><span class="player-name">Computer</span>'s Choice: <span class="player-choice"></span></p>
+        <p>Result: <span class="round-results-text"></span></p>
       </div>
       <div class="play-buttons">
         <button class="rock-button" data-value="rock">Rock</button>
         <button class="paper-button" data-value="paper">Paper</button>
         <button class="scissors-button" data-value="scissors">Scissors</button>
+      </div>
+      <div class="options-buttons" hidden>
+        <button class="reset-button">Play Again</button>
       </div>
     </div>
   </main>

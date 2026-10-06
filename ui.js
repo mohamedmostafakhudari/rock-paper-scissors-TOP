@@ -5,21 +5,39 @@ export function showCurrentRound(currentRound) {
   gameRound.textContent = currentRound;
 }
 
-export function updateUI(currentState, roundResult) {
-  document.querySelector("#player1-info-card .player-score").textContent = currentState.humanScore;
-  document.querySelector("#player2-info-card .player-score").textContent = currentState.computerScore;
-  document.querySelector(".game-round").textContent = currentState.currentRound;
-  document.querySelector("#player1-choice > .player-choice").textContent = capitalize(roundResult.humanChoice);
-  document.querySelector("#player2-choice > .player-choice").textContent = capitalize(roundResult.computerChoice);
+export function updateUI(currentState) {
+  const lastRound = currentState.lastRound;
 
-  let resultText = "";
-  if (roundResult.roundWinner === "computer") {
-    resultText = `${capitalize(roundResult.computerChoice)} Beats ${capitalize(roundResult.humanChoice)}. You Lose!`;
-  } else if (roundResult.roundWinner === "human") {
-    resultText = `${capitalize(roundResult.humanChoice)} Beats ${capitalize(roundResult.computerChoice)}. You Win!`;
-  } else {
-    resultText = `It's A Tie!`;
+  const view = {
+    p1Choice : lastRound ? capitalize(lastRound.humanChoice) : "",
+    p2Choice: lastRound ? capitalize(lastRound.computerChoice) : "",
+    result: getResultText(currentState),
+    p1Score: currentState.humanScore,
+    p2Score: currentState.computerScore,
+    round: currentState.currentRound,
   }
+  
+  document.querySelector("#player1-info-card .player-score").textContent = view.p1Score;
+  document.querySelector("#player2-info-card .player-score").textContent = view.p2Score;
 
-  document.querySelector(".round-results-text").textContent = resultText;
+  document.querySelector(".game-round").textContent = view.round;
+  document.querySelector("#player1-choice > .player-choice").textContent = view.p1Choice;
+  document.querySelector("#player2-choice > .player-choice").textContent = view.p2Choice;
+  document.querySelector(".round-results-text").textContent = view.result;
+  
+  // show/hide play buttons or options buttons based on isGameOver value
+  document.querySelector(".play-buttons").hidden = currentState.isGameOver;
+  document.querySelector(".options-buttons").hidden = !currentState.isGameOver;
+}
+
+function getResultText(currentState) {
+  const { lastRound, isGameOver } = currentState;
+  if (!lastRound) return "";
+  if (isGameOver) return `The Game Is Over, You ${currentState.gameWinner === "computer" ? "Lost" : "Won"} The Game!`;
+  
+  const humanChoice = capitalize(lastRound.humanChoice);
+  const computerChoice = capitalize(lastRound.computerChoice);
+  if (lastRound.roundWinner === "computer") return `${computerChoice} Beats ${humanChoice}. You Lose!`;
+  if (lastRound.roundWinner === "human") return `${humanChoice} Beats ${computerChoice}. You Win!`;
+  return "It's A Tie!";
 }
