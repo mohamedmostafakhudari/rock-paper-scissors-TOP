@@ -1,4 +1,3 @@
-const MAX_ROUNDS = 5;
 const CHOICES = ['rock', 'paper', 'scissors'];
 
 function capitalize(word) {
@@ -111,25 +110,23 @@ function playRound(computerChoice, humanChoice) {
 
 
 function playGame() {
-let currentRound = 1;
-let computerScore = 0;
-let humanScore = 0;
+  let currentRound = 1;
+  let computerScore = 0;
+  let humanScore = 0;
 
-while (currentRound <= MAX_ROUNDS) {
   const computerChoice = getComputerChoice();
   const humanChoice = getHumanChoice();
   const roundResult= playRound(computerChoice, humanChoice);
-  
+
   displayRoundResult(roundResult, computerChoice, humanChoice);
-  
+
   if (roundResult === "computer") {
     computerScore += 1;
   } else if (roundResult === "human") {
     humanScore += 1;
   }
 
-  currentRound += 1;
-  }
+  currentRound += 1; 
 }
 
 // playGame();
