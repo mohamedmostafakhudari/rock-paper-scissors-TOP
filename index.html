@@ -14,13 +14,19 @@
   <main id="game" class="game">
     <div class="container">
       <div id="game-info" class="game-info">
-        <p>Player 1: <span class="player1-name">Human</span></p>
-        <p>Player 2: <span class="player2 name">Computer</span></p>
+        <div class="player-card" id="player1-info-card">
+          <p>Name: <span class="player-name">Human</span></p>
+          <p>Score: <span class="player-score">0</span></p>
+        </div>
+        <div class="player-card" id="player2-info-card">
+          <p>Name: <span class="player-name">Computer</span></p>
+          <p>Score: <span class="player-score">0</span></p>
+        </div>
         <p>Current Round: <span class="game-round">1</span></p>
       </div>
       <div id="round-results" class="round-results">
-        <p><span class="player1-name">Human</span>'s Choice: <span class="player1-choice">Rock</span></p>
-        <p><span class="player2 name">Computer</span>'s Choice: <span class="player2-choice">Paper</span></p>
+        <p id="player1-choice"><span class="player-name">Human</span>'s Choice: <span class="player-choice">Rock</span></p>
+        <p id="player2-choice"><span class="player-name">Computer</span>'s Choice: <span class="player-choice">Paper</span></p>
         <p>Result: <span class="round-results-text">Paper beats Rock. Computer wins!</span></p>
       </div>
       <div class="play-buttons">

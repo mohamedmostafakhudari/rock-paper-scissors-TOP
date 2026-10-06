@@ -5,6 +5,9 @@ import { random } from "./utils.js";
 - To decouple State - Logic - UI so that UI components have only one job,
  display the current state, nothing else */
 
+const CHOICES = ['rock', 'paper', 'scissors'];
+const WIN_SCORE = 5;
+
 const gameState = {
   humanScore: 0,
   computerScore: 0,
@@ -29,6 +32,7 @@ function computeWinner(computerChoice, playerChoice) {
 }
 
 export function playRound(humanChoice) {
+  if (gameState.isGameOver) return { roundWinner, computerChoice, humanChoice };
   const computerChoice = getComputerChoice();
   const roundWinner = computeWinner(computerChoice, humanChoice);
   if (roundWinner === "computer") {
@@ -36,6 +40,10 @@ export function playRound(humanChoice) {
   }
   if (roundWinner === "human") {
     gameState.humanScore += 1;
+  }
+
+  if (gameState.computerScore === WIN_SCORE || gameState.humanScore === WIN_SCORE) {
+    gameState.isGameOver = true;
   }
 
   gameState.currentRound += 1;
@@ -52,5 +60,3 @@ export function getGameState() {
 export function playGame() {
   
 }
-
-const CHOICES = ['rock', 'paper', 'scissors'];

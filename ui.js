@@ -6,9 +6,11 @@ export function showCurrentRound(currentRound) {
 }
 
 export function updateUI(currentState, roundResult) {
+  document.querySelector("#player1-info-card .player-score").textContent = currentState.humanScore;
+  document.querySelector("#player2-info-card .player-score").textContent = currentState.computerScore;
   document.querySelector(".game-round").textContent = currentState.currentRound;
-  document.querySelector(".player1-choice").textContent = capitalize(roundResult.humanChoice);
-  document.querySelector(".player2-choice").textContent = capitalize(roundResult.computerChoice);
+  document.querySelector("#player1-choice > .player-choice").textContent = capitalize(roundResult.humanChoice);
+  document.querySelector("#player2-choice > .player-choice").textContent = capitalize(roundResult.computerChoice);
 
   let resultText = "";
   if (roundResult.roundWinner === "computer") {
