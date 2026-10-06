@@ -7,3 +7,8 @@ function displayRoundResult(roundResult, computerChoice, humanChoice) {
     console.log(`It's a tie!`);
   }
 }
+
+export function showCurrentRound(currentRound) {
+  const gameRound = document.querySelector(".game-round");
+  gameRound.textContent = currentRound;
+}

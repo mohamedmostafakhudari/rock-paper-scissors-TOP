@@ -11,8 +11,18 @@
   <script type="module" src="main.js"></script>
 </head>
 <body>
-  <main>
+  <main id="game" class="game">
     <div class="container">
+      <div id="game-info" class="game-info">
+        <p>Player 1: <span class="player1-name">Human</span></p>
+        <p>Player 2: <span class="player2 name">Computer</span></p>
+        <p>Current Round: <span class="game-round">1</span></p>
+      </div>
+      <div id="round-results" class="round-results">
+        <p><span class="player1-name">Human</span>'s Choice: <span class="player1-choice">Rock</span></p>
+        <p><span class="player2 name">Computer</span>'s Choice: <span class="player2-choice">Paper</span></p>
+        <p>Result: <span class="round-results-text">Paper beats Rock. Computer wins!</span></p>
+      </div>
       <div class="play-buttons">
         <button class="rock-button" data-value="rock">Rock</button>
         <button class="paper-button" data-value="paper">Paper</button>

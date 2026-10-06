@@ -1,4 +1,5 @@
 import { capitalize, random } from "./utils.js";
+import * as display from "./display.js";
 import * as scoreBoard from "./scoreboard.js";
 
 function getComputerChoice() {
@@ -26,6 +27,8 @@ export function playRound(humanChoice) {
   } else if (roundResult === "human") {
     scoreBoard.setHumanScore(scoreBoard.getHumanScore() + 1);
   }
+  currentRound += 1;
+  display.showCurrentRound(currentRound);
 }
 
 
