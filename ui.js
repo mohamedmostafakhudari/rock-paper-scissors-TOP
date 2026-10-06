@@ -1,10 +1,5 @@
 import { capitalize } from "./utils.js";
 
-export function showCurrentRound(currentRound) {
-  const gameRound = document.querySelector(".game-round");
-  gameRound.textContent = currentRound;
-}
-
 export function updateUI(currentState) {
   const lastRound = currentState.lastRound;
 
@@ -16,7 +11,7 @@ export function updateUI(currentState) {
     p2Score: currentState.computerScore,
     round: currentState.currentRound,
   }
-  
+
   document.querySelector("#player1-info-card .player-score").textContent = view.p1Score;
   document.querySelector("#player2-info-card .player-score").textContent = view.p2Score;
 

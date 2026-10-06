@@ -14,6 +14,7 @@ let gameState = {
   currentRound: 0,
   isGameOver: false,
   gameWinner: null,
+  // lastRound, Why? the idea is that anything that needs to survive a re-render belongs to a state
   lastRound: null,
 }
 
